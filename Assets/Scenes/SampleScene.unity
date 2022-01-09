@@ -407,6 +407,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 411555bd87d295d44b8bdc7841041b9b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0499c5d96077cbf469c0a1566b0fff54, type: 2}
     - target: {fileID: 919132149155446097, guid: 411555bd87d295d44b8bdc7841041b9b, type: 3}
       propertyPath: m_Name
       value: outRabbit
@@ -465,7 +469,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 902f6ac26a20e154480fb2e7ba5a4129, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -503,8 +507,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2081283175}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 1.07, y: 1.33, z: 2.075}
-  m_LocalScale: {x: 0.28949, y: 1, z: 0.21796085}
+  m_LocalPosition: {x: -0.1, y: 1.699, z: 2.075}
+  m_LocalScale: {x: 0.28949, y: 1, z: 0.1191701}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
