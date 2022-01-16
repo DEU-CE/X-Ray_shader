@@ -62,26 +62,26 @@ Shader "Custom/X-Rayed_object"
             #include "UnityCG.cginc"
 
             struct v2f{
-                float4 pos : SV_POSITION;
+                float4 pos : SV_POSITION;// SV_ означает, что тут координаты экранного пр-ва
                 float4 color : COLOR;
                 float3 normal : NORMAL;
-                float4 posWorld : TEXCOORD0;
+                float4 posWorld : TEXCOORD0;//TEXCOORD0 здесь это контейнер для передачи во frag 
             };
             float4 _ObjColor, _xRayedColor;
             float _RimSharpness;
             v2f vert (appdata_full v){
                 v2f o;
                 o.pos = UnityObjectToClipPos (v.vertex);
-                o.posWorld = mul(unity_ObjectToWorld, v.vertex);
-                o.normal = normalize (mul(float4(v.normal,0.0), unity_WorldToObject).xyz);
+                o.posWorld = mul(unity_ObjectToWorld, v.vertex);//умножаем на матрицу unity_ObjectToWorld чтобы получить коорды в мире
+                o.normal = normalize (mul(float4(v.normal,0.0), unity_WorldToObject).xyz);// и то же самое с нормалями
                 return o;
             }
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed4 clr = _xRayedColor;
                 float3 normalDir = i.normal;
-                float3 viewDir = normalize(_WorldSpaceCameraPos.xyz - i.posWorld.xyz);
-                float rim = 1 - saturate(dot(viewDir, normalDir));
+                float3 viewDir = normalize(_WorldSpaceCameraPos.xyz - i.posWorld.xyz);//вычитаем, чтобы получить вектор viewDir. нужно вспомнить АиГ
+                float rim = 1 - saturate(dot(viewDir, normalDir));//ну а дальше всё как в surface-шейдере
                 float3 rimLight = pow(rim, _RimSharpness) * _xRayedColor * 10;
                 clr = float4 (clr.rgb + rimLight, 0.4);
                 //half rim = 1.0 - saturate (dot (normalize (i.viewDir)), i.Normal);
